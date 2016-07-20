@@ -1,0 +1,14 @@
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <p style='color: red'><%= error%></p>
+  <% end %>
+<% end %>
+
+<form method="post" action="/login">
+  <label for="username">Username:</label>
+  <input name="username" type="text">
+  <label for="password">Password:</label>
+  <input name="password" type="password">
+  <br>
+  <input type="submit" value="Log In" class="button">
+</form>
