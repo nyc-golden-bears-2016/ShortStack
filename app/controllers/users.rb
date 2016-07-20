@@ -1,4 +1,4 @@
-get '/users/new' do
+get '/register' do
   erb :'users/new'
 end
 
@@ -14,6 +14,7 @@ post '/users' do
 end
 
 get '/login' do
+  redirect '/' if session[:user_id]
   erb :'/users/login'
 end
 
@@ -32,3 +33,9 @@ get '/logout' do
   session.clear
   redirect '/'
 end
+
+get '/users/:id' do
+  @user = User.find(params[:id])
+  erb :'users/show'
+end
+
