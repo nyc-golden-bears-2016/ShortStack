@@ -1,0 +1,17 @@
+<div class="container">
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <p style='color: red'><%= error%></p>
+    <% end %>
+  <% end %>
+
+  <form method="post" action="/users">
+    <label for="username">Username:</label>
+    <input name="user[username]" type="text">
+    <br>
+    <label for="password">Password:</label>
+    <input name="user[password]" type="password">
+    <br>
+    <input type="submit" value="Create Account!" class="button">
+  </form>
+</div>

@@ -6,5 +6,6 @@ class CreateRepliesTable < ActiveRecord::Migration
       t.references :user, null: false
 
       t.timestamps null: false
+    end
   end
 end
