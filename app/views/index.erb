@@ -1,16 +1,4 @@
-<header>
-  <h1>Short Stack</h1>
-  <p>
-    <% if !logged_in? %>
-      <a href="/register">sign up</a>
-      <a href="/login">login</a>
-    <% else %>
-      <a href="/users/<%= current_user.id %>">
-     User Profile</a>
-     <a href="/logout">logout</a>
-    <% end %>
-  </p>
-</header>
+
 
 <ul>
 <% @posts.each do |post| %>
