@@ -1,10 +1,14 @@
 <header>
   <h1>Short Stack</h1>
   <p>
-    <a href="#posts">new</a>
-    <a href="#">comments</a>
-    <a href="#">popular</a>
-    <a href="#">login</a>
+    <% if !logged_in? %>
+      <a href="/register">sign up</a>
+      <a href="/login">login</a>
+    <% else %>
+      <a href="/users/<%= current_user.id %>">
+     User Profile</a>
+     <a href="/logout">logout</a>
+    <% end %>
   </p>
 </header>
 
