@@ -1,10 +1,14 @@
 <header>
   <h1>Short Stack</h1>
-  <p>
-    <a href="#posts">new</a>
-    <a href="#">comments</a>
-    <a href="#">popular</a>
-    <a href="#">login</a>
+   <p>
+    <% if !logged_in? %>
+      <a href="/register">sign up</a>
+      <a href="/login">login</a>
+    <% else %>
+      <a href="/users/<%= current_user.id %>">
+     User Profile</a>
+     <a href="/logout">logout</a>
+    <% end %>
   </p>
 </header>
 
@@ -12,18 +16,36 @@
 <p><%= @post.content %></p>
 <p><%= User.find(@post.user_id).username %></p>
 
+
 <ul>
 <% @replies.each do |reply| %>
 <li>
 
 <p><%= reply.response %></p>
-<p><%= User.find(reply.user_id).username %></p>
+  <% user = User.find(reply.user_id) %>
+<p> <%= user.username %></p>
+
+
+<% if logged_in? && current_user.id == user.id %>
+  <form id="user-replies" method="POST" action="/replies/<%= reply.id %>">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="submit" value="edit reply">
+  </form>
+  <form id="user-replies" method="POST" action="/replies/<%= reply.id %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="delete reply">
+  </form>
+<% end %>
 </li>
 
 <% end %>
 </ul>
 
-<form id="posts" method="post" action="/replies/new">
-  <input type="text" name="response">
-  <input type="submit" value="Post Reply">
-</form>
+
+<% if logged_in? %>
+  <form id="posts" method="post" action="/replies/new">
+    <input type="text" name="response" placeholder="response">
+    <input type="hidden" name="post" value="<%= @post.id %>">
+    <input type="submit" value="Post Reply">
+  </form>
+<% end %>
