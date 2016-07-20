@@ -1,0 +1,27 @@
+<header>
+  <h1>Short Stack</h1>
+  <p>
+    <a href="#posts">new</a>
+    <a href="#">comments</a>
+    <a href="#">popular</a>
+    <a href="#">login</a>
+  </p>
+</header>
+
+<ul>
+<% @posts.each do |post| %>
+<li>
+
+<p><a href="/posts/<%=post.id%>"><%= post.title %></a></p>
+
+</li>
+
+<% end %>
+</ul>
+
+<!--
+<form id="posts" method="post" action="/posts">
+  <input type="text" name="title" placeholder="title">
+  <input type="submit">
+</form>
+ -->

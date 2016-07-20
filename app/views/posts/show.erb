@@ -1,0 +1,29 @@
+<header>
+  <h1>Short Stack</h1>
+  <p>
+    <a href="#posts">new</a>
+    <a href="#">comments</a>
+    <a href="#">popular</a>
+    <a href="#">login</a>
+  </p>
+</header>
+
+<h1> <%= @post.title %></h1>
+<p><%= @post.content %></p>
+<p><%= User.find(@post.user_id).username %></p>
+
+<ul>
+<% @replies.each do |reply| %>
+<li>
+
+<p><%= reply.response %></p>
+<p><%= User.find(reply.user_id).username %></p>
+</li>
+
+<% end %>
+</ul>
+
+<form id="posts" method="post" action="/replies/new">
+  <input type="text" name="response">
+  <input type="submit" value="Post Reply">
+</form>
