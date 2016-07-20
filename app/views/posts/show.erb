@@ -27,11 +27,12 @@
 
 
 <% if logged_in? && current_user.id == user.id %>
-  <form id="user-replies" method="POST" action="/replies/<%= reply.id %>">
+  <form id="user-update-replies" method="POST" action="/replies/<%= reply.id %>">
+     <textarea rows="4" cols="50" name="response" placeholder="response"><%= reply.response %></textarea>
     <input type="hidden" name="_method" value="PUT">
     <input type="submit" value="edit reply">
   </form>
-  <form id="user-replies" method="POST" action="/replies/<%= reply.id %>">
+  <form id="user-delete-replies" method="POST" action="/replies/<%= reply.id %>">
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="delete reply">
   </form>
@@ -44,7 +45,7 @@
 
 <% if logged_in? %>
   <form id="posts" method="post" action="/replies/new">
-    <input type="text" name="response" placeholder="response">
+    <textarea rows="4" cols="50" name="response" placeholder="response"></textarea>
     <input type="hidden" name="post" value="<%= @post.id %>">
     <input type="submit" value="Post Reply">
   </form>
