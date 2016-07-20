@@ -1,0 +1,9 @@
+<h1>Welcome <%= @user.username %>!</h1>
+<h2>Posts</h2>
+<ul><% @user.posts.each do |post| %></ul>
+<li><a href="/posts/<%= post.id%>"><%= post.title %></a></li>
+<% end %>
+<h2>Replies</h2>
+<ul><% @user.replies.each do |reply| %></ul>
+<li><a href="/posts/<%= reply.post.id %>"><%= reply.response %></a></li>
+<% end %>
