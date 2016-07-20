@@ -12,19 +12,28 @@
   </p>
 </header>
 
+
+
+
 <h1> <%= @post.title %></h1>
 <p><%= @post.content %></p>
 <p><%= User.find(@post.user_id).username %></p>
 
+<% if @post.best_answer && (@post.best_answer > 0) %>
+  <h2>User selected best answer</h2>
+  <p><%= Reply.find(@post.best_answer).response %></p>
+  <p> <%= User.find(@post.user_id).username %></p>
+<% end %>
+
 
 <ul>
-<% @replies.each do |reply| %>
+  <% @replies.each do |reply| %>
+  <% if reply.id != @post.best_answer %>
 <li>
 
 <p><%= reply.response %></p>
   <% user = User.find(reply.user_id) %>
 <p> <%= user.username %></p>
-
 
 <% if logged_in? && current_user.id == user.id %>
   <form id="user-update-replies" method="POST" action="/replies/<%= reply.id %>">
@@ -36,9 +45,19 @@
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="delete reply">
   </form>
+
+<% end %>
+<% if logged_in? && current_user.id == @post.user_id %>
+    <form id="user-delete-replies" method="POST" action="/posts/best_answer">
+    <input type="hidden" name="reply_id" value="<%= reply.id %>">
+    <input type="hidden" name="post_id" value="<%= @post.id %>">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="submit" value="Best Answer">
+  </form>
+
 <% end %>
 </li>
-
+<% end %>
 <% end %>
 </ul>
 
