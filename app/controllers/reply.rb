@@ -13,3 +13,23 @@ post '/replies/new' do
     #raise errors
   end
 end
+
+put '/replies/:id' do
+  reply = Reply.find(params[:id])
+  if request.xhr?
+    #send back partion form with user comment in it
+  else
+    reply.update_attribute("response", params[:response])
+    redirect "/posts/#{reply.post_id}"
+  end
+end
+
+delete '/replies/:id' do
+  reply = Reply.find(params[:id])
+  if request.xhr?
+    #send back partion form with user comment in it
+  else
+    reply.destroy
+    redirect "/posts/#{reply.post_id}"
+  end
+end
