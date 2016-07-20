@@ -1,27 +1,32 @@
-<header>
-  <h1>Short Stack</h1>
-  <p>
-    <% if !logged_in? %>
-      <a href="/register">sign up</a>
-      <a href="/login">login</a>
-    <% else %>
-      <a href="/users/<%= current_user.id %>">
-     User Profile</a>
-     <a href="/logout">logout</a>
-    <% end %>
-  </p>
-</header>
 
-<ul>
+
+<div class='post-container'>
 <% @posts.each do |post| %>
-<li>
 
-<p><a href="/posts/<%=post.id%>"><%= post.title %></a></p>
+<article id="<%= post.id %>">
+      <form method="post" action='/posts/<%= post.id %>/vote' class="inline">
+        <button type="submit" name="vote" value="1" class="upvote-button"></button>
+      </form>
 
-</li>
+      <form method="post" action='/posts/<%= post.id %>/vote' class="inline">
+        <button type="submit" name="vote" value="-1" class="downvote-button"></button>
+      </form>
+
+
+
+      <h2><a href='/posts/<%= post.id %>'><%= post.title %></a></h2>
+      <p>
+        <span class='points'>??</span>
+        <span class='username'><%= post.user.username %></span>
+        <span class='timestamp'><%= post.created_at %> </span>
+        <span class='comment-count'><%= post.replies.count %></span>
+        <a class="delete" href='/posts/<%= post.id %>'></a>
+      </p>
+    </article>
+
 
 <% end %>
-</ul>
+</div>
 
 <!--
 <form id="posts" method="post" action="/posts">

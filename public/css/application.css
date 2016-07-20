@@ -117,11 +117,33 @@ form#posts input[type='submit'] {
   display: inline;
 }
 
+.downvote-button {
+  background-color: transparent;
+  border: none;
+  padding-top: 5px;
+  color: ;
+  vertical-align: bottom;
+  /*float:left;*/
+  margin-left: -16px;
+  padding: 1px 0px 0px 0px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #8C8C8C;
+}
+
 .upvote-button {
   background-color: transparent;
   border: none;
   padding-top: 5px;
-  color: #8C8C8C;
-  vertical-align: sub;
-  padding: 1px 0px 0px 0px;
+  /*float: left;*/
+  vertical-align: top;
+  padding: 1px 0px 0px 0px;*/
+  /*background: url('http://i.stack.imgur.com/iqN2k.png');*/
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #8C8C8C;
 }
