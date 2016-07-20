@@ -118,10 +118,11 @@ form#posts input[type='submit'] {
 }
 
 .upvote-button {
-  background-color: transparent;
+  /*background-color: black;*/
   border: none;
   padding-top: 5px;
   color: #8C8C8C;
   vertical-align: sub;
-  padding: 1px 0px 0px 0px;
+  padding: 25px 25px 0px 0px;
+  background: url('http://i.stack.imgur.com/iqN2k.png');
 }
