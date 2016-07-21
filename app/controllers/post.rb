@@ -24,7 +24,7 @@ end
 put '/posts/best_answer' do
   post = Post.find(params[:post_id])
   post.update_attribute("best_answer", params[:reply_id])
-  redirect '/posts/#{post.id}'
+  redirect "/posts/#{post.id}"
 end
 
 post '/posts' do
