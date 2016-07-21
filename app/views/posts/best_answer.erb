@@ -1,0 +1,5 @@
+  <div class = "best_answer">
+    <h2>User selected best answer</h2>
+    <p><%= Reply.find(@post.best_answer).response %></p>
+    <p> <%= User.find(@post.user_id).username %></p>
+  </div>

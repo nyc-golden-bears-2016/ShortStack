@@ -17,7 +17,7 @@
 <div class="row">
         <div class="col-md-2 text-right"><span class='timestamp'><%= @post.age %> hours ago</span></div>
           <div class="col-md-3 text-left">
-  <p>by <%= User.find(@post.user_id).username %></p>
+  <p class='username'>by <%= User.find(@post.user_id).username %></p>
   </div>
 
 </div>
@@ -30,37 +30,40 @@
 </div>
 
 <% if @post.best_answer && (@post.best_answer > 0) %>
-  <h2>User selected best answer</h2>
-  <p><%= Reply.find(@post.best_answer).response %></p>
-  <p> <%= User.find(@post.user_id).username %></p>
+  <div class = "best_answer">
+    <h2>User selected best answer</h2>
+    <p><%= Reply.find(@post.best_answer).response %></p>
+    <p> <%= User.find(@post.user_id).username %></p>
+  </div>
 <% end %>
 
 
-<ul>
+<ul class="all-replies">
   <% @replies.each do |reply| %>
   <% if reply.id != @post.best_answer %>
+
 <div class="row">
   <div class="col-md-10 col-md-offset-1 text-left">
-<li>
+<li class="<%=reply.id%>">
 
 <p><%= reply.response %></p>
   <% user = User.find(reply.user_id) %>
-<p>by <%= user.username %></p>
+<p>by <a href="/users/<%=user.id%>"><%= user.username %></a></p>
 
 <% if logged_in? && current_user.id == user.id %>
-  <form id="user-update-replies" method="POST" action="/replies/<%= reply.id %>">
+  <form id="edit" method="POST" action="/replies/<%= reply.id %>">
      <textarea rows="4" cols="50" name="response" placeholder="response"><%= reply.response %></textarea>
     <input type="hidden" name="_method" value="PUT">
     <input type="submit" value="edit reply">
   </form>
-  <form id="user-delete-replies" method="POST" action="/replies/<%= reply.id %>">
+  <form id="delete" method="POST" action="/replies/<%= reply.id %>">
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="delete reply">
   </form>
 
 <% end %>
 <% if logged_in? && current_user.id == @post.user_id %>
-    <form id="user-delete-replies" method="POST" action="/posts/best_answer">
+    <form id="best_answer" method="POST" action="/posts/best_answer">
     <input type="hidden" name="reply_id" value="<%= reply.id %>">
     <input type="hidden" name="post_id" value="<%= @post.id %>">
     <input type="hidden" name="_method" value="PUT">

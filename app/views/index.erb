@@ -18,10 +18,15 @@
         <span class='username'><%= post.user.username %></span>
         <span class='timestamp'><%= post.age %> </span>
         <span class='comment-count'><%= post.replies.count %></span>
-        <a class="delete" href='/posts/<%= post.id %>'></a>
+        <% if logged_in? && current_user.id == post.user_id %>
+
+        <form class="delete" method="POST" action="/posts/<%= post.id %>">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="delete">
+        </form>
+        <% end %>
       </p>
     </article>
-
 
 <% end %>
 </div>

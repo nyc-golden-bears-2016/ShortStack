@@ -3,9 +3,13 @@ get '/posts/new' do
 end
 
 get '/posts/:id' do
-  @post = Post.find(params[:id])
-  @replies = Reply.all.where(post_id: params[:id])
-  erb :'posts/show'
+  if !(Post.find_by(id: params[:id])).nil?
+    @post = Post.find(params[:id])
+    @replies = Reply.all.where(post_id: params[:id])
+    erb :'posts/show'
+  else
+    "This post does not exist"
+  end
 end
 
 post '/posts/:id/vote' do
@@ -21,9 +25,13 @@ end
 
 
 put '/posts/best_answer' do
-  post = Post.find(params[:post_id])
-  post.update_attribute("best_answer", params[:reply_id])
-  redirect "/posts/#{post.id}"
+  @post = Post.find(params[:post_id])
+  @post.update_attribute("best_answer", params[:reply_id])
+  if request.xhr?
+    erb :'posts/best_answer'
+  else
+    redirect "/posts/#{@post.id}"
+  end
 end
 
 post '/posts' do
@@ -36,3 +44,14 @@ post '/posts' do
     "errors"
   end
 end
+
+delete "/posts/:id" do
+      post = Post.find(params[:id])
+      post.destroy
+    if request.xhr?
+      params[:id]
+    else
+      redirect "/"
+    end
+end
+
