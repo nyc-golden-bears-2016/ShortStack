@@ -1,4 +1,4 @@
-body {
+/*body {
   counter-reset:section;
   background-color: #F6F6EF;
   font-family: Verdana;
@@ -133,14 +133,14 @@ form#posts input[type='submit'] {
   border-top: 5px solid #8C8C8C;
 }
 
-.upvote-button {
+/*.upvote-button {
   background-color: transparent;
   border: none;
   padding-top: 5px;
   /*float: left;*/
   vertical-align: top;
-  padding: 1px 0px 0px 0px;*/
-  /*background: url('http://i.stack.imgur.com/iqN2k.png');*/
+  padding: 1px 0px 0px 0px;
+  background: url('http://i.stack.imgur.com/iqN2k.png');
   width: 0;
   height: 0;
   border-left: 5px solid transparent;
@@ -148,7 +148,7 @@ form#posts input[type='submit'] {
   border-bottom: 5px solid #8C8C8C;
 }
 
-.delete {
+/*.delete {
     background-color: none;
     border: none;
     color: gray;
@@ -158,3 +158,4 @@ form#posts input[type='submit'] {
     display: inline-text;
     font-size: 10px;
 }
+*/
