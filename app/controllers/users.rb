@@ -38,6 +38,7 @@ get '/logout' do
 end
 
 get '/users/:id' do
+  # if current_user.id
   @user = User.find(params[:id])
   erb :'users/show'
 end

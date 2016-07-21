@@ -1,9 +1,22 @@
-// $(document).ready(function() {
-//  $("#user-update-replies").on("click", ".delete", function(event) {
-//     event.preventDefault();
-//     var ajaxRequest = $.ajax({
-//       url: $(this).attr('href'),
-//       type: 'DELETE'
-//     })
+$(document).ready(function() {
+ $("article").on("click", ".delete", function(event) {
+    event.preventDefault();
+    $.ajax({
+      type: 'DELETE',
+      url: $(this).attr('action'),
+    }).done(function(id){
+      $("#" + id).remove();
+    })
+});
 
-// });
+ $("li").on("click", "#delete", function(event) {
+    event.preventDefault();
+    $.ajax({
+      type: 'DELETE',
+      url: $(this).attr('action'),
+    }).done(function(id){
+      $("." + id).remove();
+    })
+});
+
+});

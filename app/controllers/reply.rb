@@ -27,7 +27,7 @@ end
 delete '/replies/:id' do
   reply = Reply.find(params[:id])
   if request.xhr?
-    #send back partion form with user comment in it
+    params[:id]
   else
     reply.destroy
     redirect "/posts/#{reply.post_id}"

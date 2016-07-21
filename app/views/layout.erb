@@ -21,6 +21,7 @@
   <header>
   <h1>Short Stack</h1>
   <p>
+  <a href="/">Home</a>
     <% if !logged_in? %>
       <a href="/register">sign up</a>
       <a href="/login">login</a>
@@ -28,6 +29,7 @@
       <a href="/users/<%= current_user.id %>">
      User Profile</a>
      <a href="/logout">logout</a>
+     <a href="/posts/new">create post</a>
     <% end %>
   </p>
 </header>

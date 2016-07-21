@@ -1,4 +1,11 @@
+
+<% if logged_in? && current_user.id == @user.id %>
 <h1>Welcome <%= @user.username %>!</h1>
+<% else %>
+<h1>Welcome to <%= @user.username.capitalize%>'s profile</h1>
+<% end %>
+
+
 <h2>Posts</h2>
 <ul><% @user.posts.each do |post| %></ul>
 <li><a href="/posts/<%= post.id%>"><%= post.title %></a></li>
