@@ -19,18 +19,19 @@ $(document).ready(function() {
     })
 });
 
-  $("li").on("click", "#edit", function(event) {
-    event.preventDefault();
-    var data = $("textarea[name='response']").val()
-      $.ajax({
-      type: 'PUT',
-      url: $(this).attr('action'),
-      data: {response: data}
-    }).done(function(message){
-      var elem = $(event.target).closest('li').children().first()
-      $(elem).html(message)
-    })
-});
+//   $("li").on("click", "#edit", function(event) {
+//     event.preventDefault();
+//     var data = $("textarea[name='response']").val()
+//       $.ajax({
+//       type: 'PUT',
+//       url: $(this).attr('action'),
+//       data: {response: data}
+//     }).done(function(message){
+//       debugger;
+//       var elem = $(event.target).closest('li').children().first()
+//       $(elem).html(message)
+//     })
+// });
 
 
   $("li").on("click", "#best_answer", function(event) {
@@ -63,38 +64,37 @@ $(document).ready(function() {
     })
 });
 
+//     $(".downvote-posts").on("submit", function(event) {
+//     event.preventDefault();
+//       var vote_val = $(".downvote-posts>button[value]").val();
+//       var reply_id_val = $(this).attr('action');
+//       $.ajax({
+//       type: 'POST',
+//       url:  reply_id_val,
+//       data: {vote: vote_val}
+//     }).done(function(points){
+
+//       var elem = $(event.target).parent().siblings().filter(":odd").children().first();
+//       $(elem).html(points);
+//     })
+// });
+
+//     $(".upvote-posts").on("submit", function(event) {
+//     event.preventDefault();
+//       var vote_val = $("button[value]").val();
+//       var reply_id_val = $(this).attr('action');
+//       $.ajax({
+//       type: 'POST',
+//       url:  reply_id_val,
+//       data: {vote: vote_val}
+//     }).done(function(points){
+//       var elem = $(event.target).parent().siblings().filter(":odd").children().first();
+//       $(elem).html(points);
+//     })
+// });
+
+
     $(".downvote-posts").on("submit", function(event) {
-    event.preventDefault();
-      var vote_val = $(".downvote-posts>button[value]").val();
-      var reply_id_val = $(this).attr('action');
-      $.ajax({
-      type: 'POST',
-      url:  reply_id_val,
-      data: {vote: vote_val}
-    }).done(function(points){
-
-      var elem = $(event.target).parent().siblings().filter(":odd").children().first();
-      $(elem).html(points);
-    })
-});
-
-    $(".upvote-posts").on("submit", function(event) {
-    event.preventDefault();
-      var vote_val = $("button[value]").val();
-      var reply_id_val = $(this).attr('action');
-      $.ajax({
-      type: 'POST',
-      url:  reply_id_val,
-      data: {vote: vote_val}
-    }).done(function(points){
-      debugger;
-      var elem = $(event.target).parent().siblings().filter(":odd").children().first();
-      $(elem).html(points);
-    })
-});
-
-
-    $(".downvote-posts-question").on("submit", function(event) {
     event.preventDefault();
       var vote_val = $(".downvote-posts>button[value]").val();
       var reply_id_val = $(this).attr('action');
@@ -108,7 +108,7 @@ $(document).ready(function() {
     })
 });
 
-    $(".upvote-posts-question").on("submit", function(event) {
+    $(".upvote-posts").on("submit", function(event) {
     event.preventDefault();
       var vote_val = $("button[value]").val();
       var reply_id_val = $(this).attr('action');
