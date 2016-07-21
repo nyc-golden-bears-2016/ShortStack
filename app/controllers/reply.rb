@@ -16,10 +16,10 @@ end
 
 put '/replies/:id' do
   reply = Reply.find(params[:id])
+  reply.update_attribute("response", params[:response])
   if request.xhr?
-    #send back partion form with user comment in it
+    request[:response]
   else
-    reply.update_attribute("response", params[:response])
     redirect "/posts/#{reply.post_id}"
   end
 end
