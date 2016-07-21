@@ -16,7 +16,6 @@ post '/users' do
 end
 
 get '/login' do
-  # binding.pry
   redirect '/' if session[:user_id]
   erb :'/users/login'
 end

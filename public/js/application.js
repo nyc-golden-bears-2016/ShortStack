@@ -48,4 +48,19 @@ $(document).ready(function() {
     })
 });
 
+    $("#posts").on("submit", function(event) {
+    event.preventDefault();
+      var post_id = $("input[name='post']").val();
+      var post_response = $("textarea").val();
+      $.ajax({
+      type: 'POST',
+      url:  '/replies/new',
+      datatype: "json",
+      data: {post: post_id,
+             response: post_response}
+    }).done(function(message){
+      $(".all-replies").append(message);
+    })
+});
+
 });

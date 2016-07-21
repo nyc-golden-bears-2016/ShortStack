@@ -7,10 +7,18 @@
 
 
 <h2>Posts</h2>
-<ul><% @user.posts.each do |post| %></ul>
+<ul><% @user.posts.each do |post| %>
 <li><a href="/posts/<%= post.id%>"><%= post.title %></a></li>
 <% end %>
+</ul>
+
 <h2>Replies</h2>
-<ul><% @user.replies.each do |reply| %></ul>
-<li><a href="/posts/<%= reply.post.id %>"><%= reply.response %></a></li>
+
+<ul>
+  <% @user.replies.each do |reply| %>
+
+<li>
+  <a href="/posts/<%= reply.post_id %>"><%= reply.response %></a>
+</li>
 <% end %>
+</ul>

@@ -15,7 +15,7 @@
 <% end %>
 
 
-<ul>
+<ul class="all-replies">
   <% @replies.each do |reply| %>
   <% if reply.id != @post.best_answer %>
 <li class="<%=reply.id%>">
