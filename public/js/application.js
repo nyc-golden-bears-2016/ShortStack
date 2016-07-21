@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  // deletes posts on index
  $("article").on("click", ".delete", function(event) {
     event.preventDefault();
     $.ajax({
@@ -9,6 +10,7 @@ $(document).ready(function() {
     })
 });
 
+  // deletes reply on posts/show
  $("li").on("click", "#delete", function(event) {
     event.preventDefault();
     $.ajax({
@@ -19,6 +21,7 @@ $(document).ready(function() {
     })
 });
 
+  // edits reply on posts/show
   $("li").on("click", "#edit", function(event) {
     event.preventDefault();
     var data = $("textarea[name='response']").val()
@@ -72,8 +75,7 @@ $(document).ready(function() {
       url:  reply_id_val,
       data: {vote: vote_val}
     }).done(function(points){
-
-      var elem = $(event.target).parent().siblings().filter(":odd").children().first();
+      var elem = $(event.target).parent().find("span")
       $(elem).html(points);
     })
 });
@@ -87,8 +89,7 @@ $(document).ready(function() {
       url:  reply_id_val,
       data: {vote: vote_val}
     }).done(function(points){
-      debugger;
-      var elem = $(event.target).parent().siblings().filter(":odd").children().first();
+      var elem = $(event.target).parent().find("span")
       $(elem).html(points);
     })
 });
