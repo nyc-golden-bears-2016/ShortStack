@@ -2,16 +2,16 @@
 <% @posts.each do |post| %>
 <div class="boxed">
 <article id="<%= post.id %>">
+
   <div class="btn-group-vertical col-md-1 text-center" role="group">
-      <form method="post" action='/posts/<%= post.id %>/vote' class="inline">
-        <button type="submit" name="vote" value="1" class="upvote"></button>
+      <form method="post" action='/posts/<%= post.id %>/vote' class="inline upvote-posts">
+        <button type="submit" name="vote" value="1" class="upvote upvote-button"></button>
       </form>
         <span class="vote-score"><%= post.points%></span>
-      <form method="post" action='/posts/<%= post.id %>/vote' class="inline">
-        <button type="submit" name="vote" value="-1" class="downvote"></button>
+      <form method="post" action='/posts/<%= post.id %>/vote' class="inline downvote-posts">
+        <button type="submit" name="vote" value="-1" class="downvote downvote-button"></button>
       </form>
   </div>
-
 
       <h2><a href='/posts/<%= post.id %>'><%= post.title %></a></h2>
 
