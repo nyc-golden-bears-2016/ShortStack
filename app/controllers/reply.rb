@@ -33,3 +33,20 @@ delete '/replies/:id' do
     redirect "/posts/#{reply.post_id}"
   end
 end
+
+
+post '/replies/:id/vote' do
+  redirect '/login' unless logged_in?
+  reply = Reply.find_by(id: params[:id])
+  vote = Vote.new(vote_value: params[:vote].to_i, user_id: current_user.id)
+  vote.votable = reply
+  if vote.save
+    if request.xhr?
+      reply.points.to_s
+    else
+      redirect "/posts/#{reply.post_id}"
+    end
+  else
+    alert('error')
+  end
+end
