@@ -1,0 +1,23 @@
+.upvote:after {
+  border-width: 0px 7px 7px 7px;
+  border-color: transparent transparent #999 transparent;
+  background-color: transparent;
+  border-style: solid;
+  content: '';
+  display: inline-block;
+}
+
+.downvote:after {
+  border-width: 7px 7px 0px 7px;
+  border-color: #999 transparent transparent transparent;
+  background-color: transparent;
+  border-style: solid;
+  content: '';
+  display: inline-block;
+}
+
+.vote-score {
+display: inline-block;
+text-align: center;
+padding-left: -15px
+}
