@@ -51,7 +51,7 @@ $(document).ready(function() {
     $("#posts").on("submit", function(event) {
     event.preventDefault();
       var post_id = $("input[name='post']").val();
-      var post_response = $("textarea").val();
+      var post_response = $("#posts>textarea").val();
       $.ajax({
       type: 'POST',
       url:  '/replies/new',
@@ -62,5 +62,66 @@ $(document).ready(function() {
       $(".all-replies").append(message);
     })
 });
+
+    $(".downvote-posts").on("submit", function(event) {
+    event.preventDefault();
+      var vote_val = $(".downvote-posts>button[value]").val();
+      var reply_id_val = $(this).attr('action');
+      $.ajax({
+      type: 'POST',
+      url:  reply_id_val,
+      data: {vote: vote_val}
+    }).done(function(points){
+
+      var elem = $(event.target).parent().siblings().filter(":odd").children().first();
+      $(elem).html(points);
+    })
+});
+
+    $(".upvote-posts").on("submit", function(event) {
+    event.preventDefault();
+      var vote_val = $("button[value]").val();
+      var reply_id_val = $(this).attr('action');
+      $.ajax({
+      type: 'POST',
+      url:  reply_id_val,
+      data: {vote: vote_val}
+    }).done(function(points){
+      debugger;
+      var elem = $(event.target).parent().siblings().filter(":odd").children().first();
+      $(elem).html(points);
+    })
+});
+
+
+    $(".downvote-posts-question").on("submit", function(event) {
+    event.preventDefault();
+      var vote_val = $(".downvote-posts>button[value]").val();
+      var reply_id_val = $(this).attr('action');
+      $.ajax({
+      type: 'POST',
+      url:  reply_id_val,
+      data: {vote: vote_val}
+    }).done(function(points){
+      var elem = $(event.target).siblings().last()
+      $(elem).html(points);
+    })
+});
+
+    $(".upvote-posts-question").on("submit", function(event) {
+    event.preventDefault();
+      var vote_val = $("button[value]").val();
+      var reply_id_val = $(this).attr('action');
+      $.ajax({
+      type: 'POST',
+      url:  reply_id_val,
+      data: {vote: vote_val}
+    }).done(function(points){
+      var elem = $(event.target).siblings().first()
+      $(elem).html(points);
+    })
+});
+
+
 
 });
