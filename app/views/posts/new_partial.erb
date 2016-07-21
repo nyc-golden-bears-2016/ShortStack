@@ -1,6 +1,7 @@
-<div class="row">
-  <div class="col-md-10 col-md-offset-1 text-left">
-<li class="<%=reply.id%>">
+
+<div class="row <%=reply.id%>">
+  <div class="col-md-9 col-md-offset-1 text-left container-fluid boxed delete-me">
+<li>
 
 <!-- upvote/downvote -->
   <div class="btn-group-vertical col-md-1 text-center" role="group">
@@ -17,23 +18,17 @@
 <p><%= reply.response %></p>
   <% user = User.find(reply.user_id) %>
   <p>
-        <span class='timestamp'><%= reply.age %> days</span>
-        <% if logged_in? && current_user.id == reply.user_id %>
 
-        <form class="delete" method="POST" action="/posts/<%= reply.id %>">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" value="delete">
-        </form>
-        <% end %>
-      </p>
+        <span class='timestamp'><%= reply.age %> hours ago</span>
+  </p>
 <p>by <a href="/users/<%=user.id%>"><%= user.username %></a></p>
 
 
 <% if logged_in? && current_user.id == user.id %>
   <form id="edit" method="POST" action="/replies/<%= reply.id %>">
+    <input type="hidden" name="_method" value="PUT">
      <textarea class="form-control text-box" rows="4" cols="8" name="response" placeholder="response"><%= reply.response %></textarea>
     <div class="">
-    <input type="hidden" name="_method" value="PUT">
     <input class="btn btn-info col-md-1" type="submit" value="edit reply">
   </form>
   <form class="form-inline" id="delete" method="POST" action="/replies/<%= reply.id %>">
@@ -42,7 +37,10 @@
   </form>
 </div>
 <% end %>
-
   </div>
 </div>
 </li>
+
+
+
+

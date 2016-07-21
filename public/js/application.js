@@ -11,7 +11,7 @@ $(document).ready(function() {
 });
 
   // deletes reply on posts/show
- $("li").on("click", "#delete", function(event) {
+ $("ul").on("click", "#delete", function(event) {
     event.preventDefault();
     $.ajax({
       type: 'DELETE',
@@ -21,8 +21,9 @@ $(document).ready(function() {
     })
 });
 
+
   // edits reply on posts/show
-  $("li").on("click", "#edit", function(event) {
+  $("li").on("submit", "#edit", function(event) {
     event.preventDefault();
     var data = $("textarea[name='response']").val()
       $.ajax({
@@ -30,10 +31,11 @@ $(document).ready(function() {
       url: $(this).attr('action'),
       data: {response: data}
     }).done(function(message){
-      var elem = $(event.target).closest('li').children().first()
+       var elem = $(event.target).closest('li').children().first().siblings().first()
       $(elem).html(message)
     })
 });
+
 
 
   $("li").on("click", "#best_answer", function(event) {
@@ -90,35 +92,6 @@ $(document).ready(function() {
       data: {vote: vote_val}
     }).done(function(points){
       var elem = $(event.target).parent().find("span")
-      $(elem).html(points);
-    })
-});
-
-
-    $(".downvote-posts-question").on("submit", function(event) {
-    event.preventDefault();
-      var vote_val = $(".downvote-posts>button[value]").val();
-      var reply_id_val = $(this).attr('action');
-      $.ajax({
-      type: 'POST',
-      url:  reply_id_val,
-      data: {vote: vote_val}
-    }).done(function(points){
-      var elem = $(event.target).siblings().last()
-      $(elem).html(points);
-    })
-});
-
-    $(".upvote-posts-question").on("submit", function(event) {
-    event.preventDefault();
-      var vote_val = $("button[value]").val();
-      var reply_id_val = $(this).attr('action');
-      $.ajax({
-      type: 'POST',
-      url:  reply_id_val,
-      data: {vote: vote_val}
-    }).done(function(points){
-      var elem = $(event.target).siblings().first()
       $(elem).html(points);
     })
 });
