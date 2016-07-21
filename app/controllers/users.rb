@@ -16,7 +16,6 @@ post '/users' do
 end
 
 get '/login' do
-  # binding.pry
   redirect '/' if session[:user_id]
   erb :'/users/login'
 end
@@ -38,6 +37,7 @@ get '/logout' do
 end
 
 get '/users/:id' do
+  # if current_user.id
   @user = User.find(params[:id])
   erb :'users/show'
 end

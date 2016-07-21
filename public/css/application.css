@@ -147,3 +147,14 @@ form#posts input[type='submit'] {
   border-right: 5px solid transparent;
   border-bottom: 5px solid #8C8C8C;
 }
+
+.delete {
+    background-color: none;
+    border: none;
+    color: gray;
+    padding: ;
+    text-align: center;
+    text-decoration: none;
+    display: inline-text;
+    font-size: 10px;
+}
