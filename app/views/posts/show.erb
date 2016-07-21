@@ -1,10 +1,33 @@
+<div class="row">
+
+<div class="btn-group-vertical col-md-1 text-center" role="group">
+      <form method="post" action='/posts/<%= @post.id %>/vote'>
+        <button type="submit" name="vote" value="1" class="upvote"></button>
+      </form>
+      <span class="vote-score"><%= @post.points%></span>
+      <form method="post" action='/posts/<%= @post.id %>/vote'>
+        <button type="submit" name="vote" value="-1" class="downvote"></button>
+      </form>
+</div>
 
 
 
+      <div class="col-md-4 title"><%= @post.title %></p></div>
+</div>
+<div class="row">
+        <div class="col-md-2 text-right"><span class='timestamp'><%= @post.age %> hours ago</span></div>
+          <div class="col-md-3 text-left">
+  <p>by <%= User.find(@post.user_id).username %></p>
+  </div>
 
-<h1> <%= @post.title %></h1>
-<p><%= @post.content %></p>
-<p><%= User.find(@post.user_id).username %></p>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 text-left col-md-offset-1">
+  <p class="lead"><%= @post.content %></p>
+</div>
+</div>
 
 <% if @post.best_answer && (@post.best_answer > 0) %>
   <h2>User selected best answer</h2>
@@ -16,11 +39,13 @@
 <ul>
   <% @replies.each do |reply| %>
   <% if reply.id != @post.best_answer %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 text-left">
 <li>
 
 <p><%= reply.response %></p>
   <% user = User.find(reply.user_id) %>
-<p> <%= user.username %></p>
+<p>by <%= user.username %></p>
 
 <% if logged_in? && current_user.id == user.id %>
   <form id="user-update-replies" method="POST" action="/replies/<%= reply.id %>">
@@ -43,12 +68,15 @@
   </form>
 
 <% end %>
+  </div>
+</div>
 </li>
 <% end %>
 <% end %>
 </ul>
 
-
+<div class="row">
+  <div class="col-md-12 col-md-offset-1 text-left">
 <% if logged_in? %>
   <form id="posts" method="post" action="/replies/new">
     <textarea rows="4" cols="50" name="response" placeholder="response"></textarea>
@@ -56,3 +84,5 @@
     <input type="submit" value="Post Reply">
   </form>
 <% end %>
+</div>
+</div>

@@ -9,7 +9,6 @@ get '/posts/:id' do
 end
 
 post '/posts/:id/vote' do
-  binding.pry
   redirect '/login' unless logged_in?
   post = Post.find_by(id: params[:id])
   post.votes.new(vote_value: params[:vote].to_i, user_id: session[:user_id], votable_type: post.class.name)
