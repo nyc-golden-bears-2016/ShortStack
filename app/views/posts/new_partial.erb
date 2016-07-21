@@ -4,12 +4,12 @@
 
 <!-- upvote/downvote -->
   <div class="btn-group-vertical col-md-1 text-center" role="group">
-      <form method="post" action='/replies/<%= reply.id %>/vote' class="inline">
-        <button type="submit" name="vote" value="1" class="upvote-button"></button>
+      <form method="post" action='/replies/<%= reply.id %>/vote' class="inline upvote-posts">
+        <button type="submit" name="vote" value="1" class="upvote upvote-button"></button>
       </form>
-
-      <form method="post" action='/replies/<%= reply.id %>/vote' class="inline">
-        <button type="submit" name="vote" value="-1" class="downvote-button"></button>
+      <span class="vote-score points"><%= reply.points%></span>
+      <form method="post" action='/replies/<%= reply.id %>/vote' class="inline downvote-posts">
+        <button type="submit" name="vote" value="-1" class="downvote downvote-button"></button>
       </form>
     </div>
 
@@ -17,8 +17,6 @@
 <p><%= reply.response %></p>
   <% user = User.find(reply.user_id) %>
   <p>
-        <span class='points'><%= reply.points%></span>
-        <span class='username'><%= reply.user.username %></span>
         <span class='timestamp'><%= reply.age %> days</span>
       </p>
 <p>by <a href="/users/<%=user.id%>"><%= user.username %></a></p>
@@ -26,15 +24,16 @@
 
 <% if logged_in? && current_user.id == user.id %>
   <form id="edit" method="POST" action="/replies/<%= reply.id %>">
-     <textarea rows="4" cols="50" name="response" placeholder="response"><%= reply.response %></textarea>
+     <textarea class="form-control text-box" rows="4" cols="8" name="response" placeholder="response"><%= reply.response %></textarea>
+    <div class="">
     <input type="hidden" name="_method" value="PUT">
-    <input type="submit" value="edit reply">
+    <input class="btn btn-info col-md-1" type="submit" value="edit reply">
   </form>
-  <form id="delete" method="POST" action="/replies/<%= reply.id %>">
+  <form class="form-inline" id="delete" method="POST" action="/replies/<%= reply.id %>">
     <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="delete reply">
+    <input class="btn btn-info" type="submit" value="delete reply">
   </form>
-
+</div>
 <% end %>
 
   </div>

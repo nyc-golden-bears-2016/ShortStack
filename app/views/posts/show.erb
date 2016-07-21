@@ -49,11 +49,11 @@
 <!-- upvote/downvote -->
   <div class="btn-group-vertical col-md-1 text-center" role="group">
       <form method="post" action='/replies/<%= reply.id %>/vote' class="inline upvote-posts">
-        <button type="submit" name="vote" value="1" class="upvote-button"></button>
+        <button type="submit" name="vote" value="1" class="upvote upvote-button"></button>
       </form>
-
+      <span class="vote-score points"><%= reply.points%></span>
       <form method="post" action='/replies/<%= reply.id %>/vote' class="inline downvote-posts">
-        <button type="submit" name="vote" value="-1" class="downvote-button"></button>
+        <button type="submit" name="vote" value="-1" class="downvote downvote-button"></button>
       </form>
     </div>
 
@@ -61,10 +61,9 @@
 <p><%= reply.response %></p>
   <% user = User.find(reply.user_id) %>
   <p>
-        <span class='points'><%= reply.points%></span>
-        <span class='username'><%= reply.user.username %></span>
-        <span class='timestamp'><%= reply.age %> days</span>
-      </p>
+
+        <span class='timestamp'><%= reply.age %> hours ago</span>
+  </p>
 <p>by <a href="/users/<%=user.id%>"><%= user.username %></a></p>
 
 
