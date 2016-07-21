@@ -12,20 +12,20 @@
 
 
 
-      <div class="col-md-4 title"><%= @post.title %></p></div>
+      <div class="col-md-4"><blockquote class="title"><%= @post.title %></blockquote></div>
 </div>
 <div class="row">
         <div class="col-md-2 text-right"><span class='timestamp'><%= @post.age %> hours ago</span></div>
           <div class="col-md-3 text-left">
-  <p class='username'>by <%= User.find(@post.user_id).username %></p>
+  <p class='username'>by <a href="/users/<%=@post.user_id%>"><%= User.find(@post.user_id).username %></a></p>
   </div>
 
 </div>
 </div>
 
 <div class="row">
-  <div class="col-md-8 text-left col-md-offset-1">
-  <p class="lead"><%= @post.content %></p>
+  <div class="col-md-8 text-left col-md-offset-2">
+  <blockquote class="small-title"><%= @post.content %></blockquote>
 </div>
 </div>
 
@@ -38,12 +38,12 @@
 <% end %>
 
 
-<ul class="all-replies">
+<ul class="all-replies no-bullets">
   <% @replies.each do |reply| %>
   <% if reply.id != @post.best_answer %>
 
 <div class="row">
-  <div class="col-md-10 col-md-offset-1 text-left">
+  <div class="col-md-9 col-md-offset-1 text-left container-fluid boxed">
 <li class="<%=reply.id%>">
 
 <!-- upvote/downvote -->
@@ -77,15 +77,16 @@
 
 <% if logged_in? && current_user.id == user.id %>
   <form id="edit" method="POST" action="/replies/<%= reply.id %>">
-     <textarea rows="4" cols="50" name="response" placeholder="response"><%= reply.response %></textarea>
+     <textarea class="form-control text-box" rows="4" cols="8" name="response" placeholder="response"><%= reply.response %></textarea>
+    <div class="">
     <input type="hidden" name="_method" value="PUT">
-    <input type="submit" value="edit reply">
+    <input class="btn btn-info col-md-1" type="submit" value="edit reply">
   </form>
-  <form id="delete" method="POST" action="/replies/<%= reply.id %>">
+  <form class="form-inline" id="delete" method="POST" action="/replies/<%= reply.id %>">
     <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="delete reply">
+    <input class="btn btn-info" type="submit" value="delete reply">
   </form>
-
+</div>
 <% end %>
 <% if logged_in? && current_user.id == @post.user_id %>
     <form id="best_answer" method="POST" action="/posts/best_answer">
@@ -104,13 +105,13 @@
 </ul>
 
 <div class="row">
-  <div class="col-md-12 col-md-offset-1 text-left">
+  <div class="col-md-6 col-md-offset-3">
 <% if logged_in? %>
-  <form id="posts" method="post" action="/replies/new">
-    <textarea rows="4" cols="50" name="response" placeholder="response"></textarea>
+  <form id="posts" class="boxed" method="post" action="/replies/new">
+    <textarea class="form-control" rows="4" cols="25" name="response" placeholder="response" style="margin-bottom:10px"></textarea>
     <input type="hidden" name="post" value="<%= @post.id %>">
-    <input type="submit" value="Post Reply">
+    <input class="btn btn-info" type="submit" value="Post Reply">
   </form>
 <% end %>
-</div>
+  </div>
 </div>

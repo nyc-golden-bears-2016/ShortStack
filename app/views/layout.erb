@@ -27,21 +27,23 @@
   <h1>Short Stack</h1>
   <p>
 
-  <a href="/">Home</a>
+  <a class="btn btn-primary navbar-btn" href="/">home</a>
     <% if !logged_in? %>
-      <a class="btn btn-default navbar-btn" href="/register">sign up</a>
-      <a class="btn btn-default navbar-btn" href="/login">login</a>
+      <a class="btn btn-success navbar-btn" href="/register">sign up</a>
+      <a class="btn btn-danger navbar-btn" href="/login">login</a>
     <% else %>
-      <a class="btn btn-default navbar-btn" href="/users/<%= current_user.id %>">
+      <a class="btn btn-success navbar-btn" href="/users/<%= current_user.id %>">
      user profile</a>
-     <a class="btn btn-default navbar-btn" href="/logout">logout</a>
-     <a class="btn btn-default navbar-btn" href="/posts/new">create post</a>
+     <a class="btn btn-danger navbar-btn" href="/logout">logout</a>
+     <a class="btn btn-warning navbar-btn" href="/posts/new">create post</a>
     <% end %>
 
   </p>
 </div>
 </nav>
+<div class="yield">
   <%= yield %>
+</div>
   <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

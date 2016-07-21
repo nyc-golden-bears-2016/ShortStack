@@ -21,3 +21,59 @@ display: inline-block;
 text-align: center;
 padding-left: -15px
 }
+
+.boxed {
+  border-style: solid;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 5px;
+  border-color: #e6e6e6;
+  border-width: 2px;
+}
+
+.no-bullets{
+  list-style-type: none;
+}
+
+.text-box {
+  width: 60%;
+  margin-bottom: 10px;
+}
+
+.yield {
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+.navbar h1 {
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+.navbar p {
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+.title {
+  font-size: 28px;
+}
+
+.small-title {
+  font-size: 20px;
+}
+
+#delete {
+  margin-left: 100px;
+}
+
+input.form-control {
+  width: 30%;
+}
+/*textarea.form-control.text-box {
+  display:none;
+}
+
+input.btn.btn-info {
+  display: none;
+}*/

@@ -1,24 +1,23 @@
 <div class='post-container'>
 <% @posts.each do |post| %>
-
+<div class="boxed">
 <article id="<%= post.id %>">
+
   <div class="btn-group-vertical col-md-1 text-center" role="group">
       <form method="post" action='/posts/<%= post.id %>/vote' class="inline upvote-posts">
-        <button type="submit" name="vote" value="1" class="upvote-button"></button>
+        <button type="submit" name="vote" value="1" class="upvote upvote-button"></button>
       </form>
-
+        <span class="vote-score"><%= post.points%></span>
       <form method="post" action='/posts/<%= post.id %>/vote' class="inline downvote-posts">
-        <button type="submit" name="vote" value="-1" class="downvote-button"></button>
+        <button type="submit" name="vote" value="-1" class="downvote downvote-button"></button>
       </form>
-    </div>
-
+  </div>
 
       <h2><a href='/posts/<%= post.id %>'><%= post.title %></a></h2>
-      <p>
-        <span class='points'><%= post.points%></span>
-        <span class='username'><%= post.user.username %></span>
-        <span class='timestamp'><%= post.age %> </span>
-        <span class='comment-count'><%= post.replies.count %></span>
+
+        <span class='username'>by <a href='/users/<%=post.user_id%>'><%= post.user.username %></a> |</span>
+        <span class='timestamp'><%= post.age %> hours ago |</span>
+        <span class='comment-count'><%= post.replies.count %> comments</span>
         <% if logged_in? && current_user.id == post.user_id %>
 
         <form class="delete" method="POST" action="/posts/<%= post.id %>">
@@ -28,7 +27,7 @@
         <% end %>
       </p>
     </article>
-
+</div>
 <% end %>
 </div>
 
