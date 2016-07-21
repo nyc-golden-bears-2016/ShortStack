@@ -42,9 +42,9 @@
   <% @replies.each do |reply| %>
   <% if reply.id != @post.best_answer %>
 
-<div class="row">
-  <div class="col-md-9 col-md-offset-1 text-left container-fluid boxed">
-<li class="<%=reply.id%>">
+<div class="row <%=reply.id%>">
+  <div class="col-md-9 col-md-offset-1 text-left container-fluid boxed delete-me">
+<li>
 
 <!-- upvote/downvote -->
   <div class="btn-group-vertical col-md-1 text-center" role="group">

@@ -1,7 +1,7 @@
 <div class='post-container'>
 <% @posts.each do |post| %>
-<div class="boxed">
-<article id="<%= post.id %>">
+<div class="boxed" id="<%= post.id %>">
+<article>
 
   <div class="btn-group-vertical col-md-1 text-center" role="group">
       <form method="post" action='/posts/<%= post.id %>/vote' class="inline upvote-posts">
