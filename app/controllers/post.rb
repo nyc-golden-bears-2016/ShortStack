@@ -13,7 +13,6 @@ get '/posts/:id' do
 end
 
 post '/posts/:id/vote' do
-  redirect '/login' unless logged_in?
   post = Post.find_by(id: params[:id])
   vote = Vote.new(vote_value: params[:vote].to_i, user_id: current_user.id)
   vote.votable = post
