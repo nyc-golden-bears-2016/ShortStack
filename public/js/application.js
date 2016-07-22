@@ -25,12 +25,13 @@ $(document).ready(function() {
   // edits reply on posts/show
   $("li").on("submit", "#edit", function(event) {
     event.preventDefault();
-    var data = $("textarea[name='response']").val()
+    var data = $(this).children().first().val()
       $.ajax({
       type: 'PUT',
       url: $(this).attr('action'),
       data: {response: data}
     }).done(function(message){
+
        var elem = $(event.target).closest('li').children().first().siblings().first()
       $(elem).html(message)
     })
