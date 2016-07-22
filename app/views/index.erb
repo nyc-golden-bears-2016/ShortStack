@@ -17,7 +17,7 @@
       </form>
   </div>
 
-      <h2><a href='/posts/<%= post.id %>'><%= post.title %></a></h2>
+      <h2><a class="small-title" href='/posts/<%= post.id %>'><%= post.title %></a></h2>
 
         <span class='username'>by <a href='/users/<%=post.user_id%>'><%= post.user.username %></a> |</span>
         <span class='timestamp'><%= post.age %> hours ago |</span>
