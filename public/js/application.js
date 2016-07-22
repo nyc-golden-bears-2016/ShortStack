@@ -65,6 +65,8 @@ $(document).ready(function() {
              response: post_response}
     }).done(function(message){
       $(".all-replies").append(message);
+      x=$(".col-md-6.col-md-offset-3").children().children()[0]
+      $(x).val("")
     })
 });
 
