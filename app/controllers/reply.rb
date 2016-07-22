@@ -36,17 +36,20 @@ end
 
 
 post '/replies/:id/vote' do
-  redirect '/login' unless logged_in?
   reply = Reply.find_by(id: params[:id])
-  vote = Vote.new(vote_value: params[:vote].to_i, user_id: current_user.id)
-  vote.votable = reply
-  if vote.save
-    if request.xhr?
-      reply.points.to_s
+  if reply.votes.find_by(user_id: session[:user_id]).nil?
+    vote = Vote.new(vote_value: params[:vote].to_i, user_id: current_user.id)
+    vote.votable = reply
+    if vote.save
+      if request.xhr?
+        reply.points.to_s
+      else
+        redirect "/posts/#{reply.post_id}"
+      end
     else
-      redirect "/posts/#{reply.post_id}"
+      alert('error')
     end
-  else
-    alert('error')
+  elsif request.xhr?
+    post.points.to_s
   end
 end
