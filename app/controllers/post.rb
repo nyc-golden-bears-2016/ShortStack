@@ -6,6 +6,7 @@ get '/posts/:id' do
   if !(Post.find_by(id: params[:id])).nil?
     @post = Post.find(params[:id])
     @replies = Reply.all.where(post_id: params[:id])
+    @replies = @replies.sort { |a, b|  b.points <=> a.points}
     erb :'posts/show'
   else
     "This post does not exist"
@@ -32,6 +33,7 @@ end
 put '/posts/best_answer' do
   @post = Post.find(params[:post_id])
   @post.update_attribute("best_answer", params[:reply_id])
+
   if request.xhr?
     erb :'posts/best_answer', layout: false
   else

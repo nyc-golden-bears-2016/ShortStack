@@ -39,7 +39,7 @@
 
 
 <ul class="all-replies no-bullets">
-  <% @replies.each do |reply| %>
+   <% @replies.each do |reply| %>
   <% if reply.id != @post.best_answer %>
 
 <div class="row <%=reply.id%>">
@@ -85,7 +85,7 @@
     <input type="hidden" name="post_id" value="<%= @post.id %>">
     <input type="hidden" name="_method" value="PUT">
     <% if @post.best_answer.nil? %>
-    <input class="btn btn-info col-xs-1" type="submit" value="Best Answer">
+    <input class="btn btn-info col-xs-1" type="submit" value="best answer">
     <% end %>
   </form>
 
@@ -103,7 +103,7 @@
   <form id="posts" class="boxed" method="post" action="/replies/new">
     <textarea class="form-control" rows="4" cols="25" name="response" placeholder="response" style="margin-bottom:10px"></textarea>
     <input type="hidden" name="post" value="<%= @post.id %>">
-    <input class="btn btn-info" type="submit" value="Post Reply">
+    <input class="btn btn-info" type="submit" value="post reply">
   </form>
 <% end %>
   </div>
