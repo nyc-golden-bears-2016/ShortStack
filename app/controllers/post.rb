@@ -33,7 +33,7 @@ put '/posts/best_answer' do
   @post = Post.find(params[:post_id])
   @post.update_attribute("best_answer", params[:reply_id])
   if request.xhr?
-    erb :'posts/best_answer'
+    erb :'posts/best_answer', layout: false
   else
     redirect "/posts/#{@post.id}"
   end
